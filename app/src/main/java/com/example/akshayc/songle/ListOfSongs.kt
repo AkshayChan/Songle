@@ -1,8 +1,8 @@
 package com.example.akshayc.songle
 
 import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.util.Xml
 import android.widget.ArrayAdapter
@@ -13,13 +13,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
-import android.support.v4.app.NotificationCompat.getCategory
-import android.R.attr.description
-import android.widget.TextView
-import android.content.ClipData.Item
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.ListAdapter
 
 
 data class Song(val number: String, val artist: String, val title: String, val link: String)

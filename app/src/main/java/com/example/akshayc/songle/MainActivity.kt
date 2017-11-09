@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startProgress(view: View) :Unit {
-        val intent = Intent(this, progress::class.java)
+        val intent = Intent(this, WordList::class.java)
         startActivity(intent)
     }
 

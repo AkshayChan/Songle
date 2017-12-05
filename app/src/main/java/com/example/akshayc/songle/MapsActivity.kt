@@ -8,9 +8,11 @@ import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
+import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationListener
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.maps.android.kml.KmlLayer
 import java.io.*
 import java.net.URL
@@ -27,7 +30,7 @@ import java.net.URL
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener, DownloadListener {
+        LocationListener, DownloadListener, GoogleMap.OnMarkerClickListener {
 
     val tag = "MapsActivity"
     private lateinit var mMap: GoogleMap
@@ -59,6 +62,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build()
+
+        /*val snackbar = Snackbar
+                .make(findViewById<View>(android.R.id.content), "Word Collected : way ", Snackbar.LENGTH_INDEFINITE)
+        snackbar.show()*/
     }
 
 
@@ -102,6 +109,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
         }
         // Add ”My location” button to the user interface
         mMap.uiSettings.isMyLocationButtonEnabled = true
+        mMap.setOnMarkerClickListener(this)
+    }
+    override fun onMarkerClick(marker: Marker): Boolean {
+        val snackbar = Snackbar
+                .make(findViewById<View>(android.R.id.content), "Word Collected : ${marker.title} way", Snackbar.LENGTH_INDEFINITE)
+        snackbar.show()
+        marker.remove()
+        progress.count = progress.count + 1
+        return false
     }
 
 

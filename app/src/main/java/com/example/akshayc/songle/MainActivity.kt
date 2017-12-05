@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     private inner class NetworkReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val connMgr =
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startActivity(view: View) :Unit {
-        val intent = Intent(this, ListOfSongs::class.java)
+        val intent = Intent(this, WordList::class.java)
         startActivity(intent)
     }
 
@@ -62,7 +63,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startProgress(view: View) :Unit {
-        val intent = Intent(this, WordList::class.java)
+        val intent = Intent(this, progress::class.java)
+        startActivity(intent)
+    }
+
+    fun startReview(view: View) :Unit {
+        val intent = Intent(this, review_songs::class.java)
         startActivity(intent)
     }
 

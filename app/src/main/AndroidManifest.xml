@@ -58,8 +58,14 @@
         <activity
             android:name=".progress"
             android:label="Progress until now" />
-        <activity android:name=".WordList" />
-        <activity android:name=".CorrectSong"></activity>
+        <activity
+            android:name=".WordList"
+            android:label="Words collected. Are you ready to guess?" />
+        <activity
+            android:name=".CorrectSong"
+            android:label="That is Correct!" />
+        <activity android:name=".review_songs"
+            android:label = "Songs Guessed" />
     </application>
 
 </manifest>

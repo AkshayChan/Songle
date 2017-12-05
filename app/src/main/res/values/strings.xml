@@ -4,12 +4,12 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="select_song">Which song would you like to play?</string>
     <string name="select_level">Which map would you like to play? (1-5) </string>
-    <string name="progress1">Fresh Blood</string>
-    <string name="song1">0/6 Songs</string>
-    <string name="progress2">Avid Collector</string>
-    <string name="song2">0/50 words</string>
-    <string name="progress3">Good Guesser</string>
-    <string name="song3">0/10 Songs</string>
+    <string name="progress1">Songs guessed</string>
+    <string name="song1">0</string>
+    <string name="progress2">Words collected</string>
+    <string name="song2">0</string>
+    <string name="progress3">Average score</string>
+    <string name="song3">0</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

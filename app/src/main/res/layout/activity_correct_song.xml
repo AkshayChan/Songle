@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/artistName"
         android:layout_width="297dp"
         android:layout_height="33dp"
         android:layout_marginEnd="8dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/songName"
         android:layout_width="297dp"
         android:layout_height="32dp"
         android:layout_marginEnd="8dp"

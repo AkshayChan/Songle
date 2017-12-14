@@ -7,15 +7,24 @@ import android.widget.ListView
 
 class review_songs : AppCompatActivity() {
 
+    var listView: ListView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review_songs)
 
-        var number = arrayOf("Bohemian Rhapsody", "Smells Like Teen Spirit", "Perfect Day", "Hallelujah")
-        val adapter1 = ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_2, android.R.id.text1, number)
+        listView = findViewById(R.id.songlist)
 
-        val listView = findViewById<ListView>(R.id.songlist) as ListView
-        listView.adapter = adapter1
+        var strlist: ArrayList<String> = arrayListOf()
+
+        var list = DbHelper.Instance(this).getAllSongsDataAsPerSongGuessed("true")
+        for (l in list) {
+            strlist.add(l.Title)
+        }
+
+        var adapter = ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, strlist)
+
+        listView?.adapter = adapter
+
     }
 }

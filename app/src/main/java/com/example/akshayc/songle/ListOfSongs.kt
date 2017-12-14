@@ -1,58 +1,56 @@
 package com.example.akshayc.songle
 
-import android.os.AsyncTask
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.util.Xml
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserException
-import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
 
-data class Song(val number: String, val artist: String, val title: String, val link: String)
 
-interface DownloadCompleteListener {
-    fun downloadComplete(list : List<Song>)
-}
+class ListOfSongs : AppCompatActivity(), AdapterView.OnItemClickListener {
 
-class ListOfSongs : AppCompatActivity(), DownloadCompleteListener {
+     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-    var slist = mutableListOf<Song>()
-    var number = mutableListOf<String>()
+        var list = listView?.getItemAtPosition(position).toString().split(" ")
+        var intent: Intent = Intent(this, WordList::class.java)
+        intent.putExtra("SONG_NO", list[1])
+        startActivity(intent)
 
+    }
 
+    var listView: ListView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        DownloadXmlTask(this).execute("http://www.inf.ed.ac.uk/teaching/courses/cslp/data/songs/songs.txt")
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_of_songs)
-
-        val adapter1 = ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_2, android.R.id.text1, number)
-
-        val listView = findViewById<ListView>(R.id.listOf) as ListView
-        listView.adapter = adapter1
     }
 
-    override fun downloadComplete (list : List<Song>) {
-        Log.d("Hello there", "Yaay works")
-        slist = list.toMutableList()
-        for (song in slist) {
-            number.add( "Song ${song.number}")
+    override fun onStart() {
+        super.onStart()
+        listView = findViewById(R.id.listOf)
+        var strlist: ArrayList<String> = arrayListOf()
+        var list = DbHelper.Instance(this).getAllSongsDataAsPerSongGuessed("false")
+        for (l in list) {
+            strlist.add("Song " + l.Number)
         }
+
+        var adapter = ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, strlist)
+
+        listView?.adapter = adapter
+        listView?.onItemClickListener = this
+    }
+
+    override fun onStop() {
+        super.onStop()
     }
 
 }
 
 
-class DownloadXmlTask(private val caller : DownloadCompleteListener):
+/* class DownloadXmlTask(private val caller : DownloadCompleteListener):
         AsyncTask<String, Void, String>() {
 
     var solist = emptyList<Song>()
@@ -182,7 +180,7 @@ class DownloadXmlTask(private val caller : DownloadCompleteListener):
         }
         return result
     }
-}
+} */
 
 
 

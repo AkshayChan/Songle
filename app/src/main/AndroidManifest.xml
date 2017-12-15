@@ -63,7 +63,7 @@
             android:label="Words collected. Are you ready to guess?" />
         <activity
             android:name=".CorrectSong"
-            android:label="That is Correct!" />
+            android:label="That is your song!" />
         <activity android:name=".review_songs"
             android:label = "Songs Guessed" />
     </application>
